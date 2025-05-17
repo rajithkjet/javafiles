@@ -40,7 +40,9 @@ public class login extends HttpServlet {
 		boolean status=service.validate(cus);
 		
 		if(status) {
+			customer loginedCus=service.getOne(cus);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("welcome.jsp");
+			request.setAttribute("customer", loginedCus);
 			dispatcher.forward(request, response);
 		}else {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("homepage.jsp");
